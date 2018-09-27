@@ -17,12 +17,8 @@ class Cell
     columns_board = board[0].length
     posible_neighbors = [[row-1, column-1], [row, column-1], [row+1, column-1], [row+1, column], [row+1, column+1], [row, column+1], [row-1, column+1], [row-1, column]]
     posible_neighbors.each do |position|
-      if position.first >= 0 && position.first < rows_board
-        if position.last >= 0 && position.last < columns_board
-          if board[position.first][position.last] == 1
-            neighbors += 1
-          end
-        end
+      if (position.first >= 0 && position.first < rows_board) && (position.last >= 0 && position.last < columns_board) && (board[position.first][position.last] == 1)
+        neighbors += 1
       end
     end
     neighbors
