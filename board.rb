@@ -23,13 +23,19 @@ class Board
       board[cell.first][cell.last] = 1
     end
   end
+
+  def iterate_over_board
+    board.length.times do |row|
+      board[row].length.times do |column|
+        draw_cells_alive_on_board(row, column)
+      end
+    end
+  end
   
   def draw_dead_cells_on_board
     board.length.times do |row|
-      board[row].length.times do |column|
-        if board[row][column] != 1
-          board[row][column] = 0
-        end
+      board[row].length.times do |column| 
+        if (board[row][column] != 1) then (board[row][column] = 0) end
       end
     end
   end
@@ -45,15 +51,9 @@ class Board
 
   def reproduce_cells(neighbors, row, column)
     if board[row][column] == 1
-      if neighbors == 2 || neighbors == 3
-        board[row][column] = 1
-      else
-        board[row][column] = 0
-      end
+      board[row][column] = neighbors == 2 || neighbors == 3 ? 1 : 0
     else
-      if board[row][column] == 0 && neighbors == 3
-        board[row][column] = 1
-      end
+      board[row][column] == 0 && neighbors == 3 ? board[row][column] = 1 : return
     end
   end
 end
